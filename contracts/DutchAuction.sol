@@ -3,47 +3,27 @@ pragma solidity ^0.8.17;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
+import "hardhat/console.sol";
 
 contract DutchAuction is Ownable {
-    /**
-     * Dutch Auction is time bound and descends in price.
-     *
-     * Initial parameters:
-     * - Address of the NFT contract - Done
-     * - Id of the NFT - Done
-     * - Initial price of the NFt - Done
-     * - discount rate (per seconds) - Done
-     * - duration
-     *
-     * You need allownace to send that NFT otherwise this won't work.
-     */
-
     IERC721 public nft;
 
-    uint256 public initialPrice;
-    uint256 public id;
-    uint256 public discountRate;
-    uint256 public duration;
+    uint256 public initialPrice = 1000 ether;
+    uint256 public discountRate = 2 wei;
+    uint256 public duration = 7 days;
     uint256 public startTime;
+    uint256 public id;
 
     constructor(
-        uint256 _initialPrice,
         address _nftAddres,
-        uint256 _id,
-        uint256 _discountRate,
-        uint256 _duration,
-        uint256 _startTime
+        uint256 _id
     ) {
-        // setting up dutch auction variables
-        initialPrice = _initialPrice;
         id = _id;
-        discountRate = _discountRate;
-        duration = _duration;
-        startTime = _startTime;
+        startTime = block.timestamp;
 
         // getting allowance from the owner of the NFT to be auctioned
         nft = IERC721(_nftAddres);
-        nft.approve(address(this), id);
+        console.log(block.timestamp);
     }
 
     // Returns the current price of the NFT in auction
