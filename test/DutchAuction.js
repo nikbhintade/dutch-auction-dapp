@@ -82,7 +82,7 @@ describe("Dutch Auction", async () => {
             buyer.address,
             0
         )
-    })
+    });
     it("should refund the extra amount", async () => {
         const { dutchauction, buyer } = await loadFixture(deployFixture);
 
@@ -92,5 +92,21 @@ describe("Dutch Auction", async () => {
         const PRICE = await dutchauction.getPrice();
 
         expect(await hre.ethers.provider.getBalance(dutchauction.address)).to.be.equal(hre.ethers.BigNumber.from(PRICE));
-    })
+    });
+    it("should not allow to buy after auction ends", async () => {
+        const { dutchauction, buyer } = await loadFixture(deployFixture);
+
+        await time.increase(days(7));
+        
+        const PRICE = await dutchauction.getPrice();
+        await expect(dutchauction.connect(buyer).buy({value: PRICE})).to.revertedWith("Auction ended");
+    });
+    it("should not allow if less price is paid", async () => {
+        const { dutchauction, buyer } = await loadFixture(deployFixture);
+
+        await time.increase(3600);
+        
+        const PRICE = await dutchauction.getPrice();
+        await expect(dutchauction.connect(buyer).buy({value: PRICE.sub(1000)})).to.revertedWith("ETH < price");
+    });
 });

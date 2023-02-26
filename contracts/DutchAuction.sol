@@ -42,8 +42,10 @@ contract DutchAuction is Ownable {
 
         nft.transferFrom(owner(), msg.sender, id);
         uint256 refund = msg.value - price;
+        console.log(refund);
         if (refund > 0) {
+            console.log(refund);
             payable(msg.sender).transfer(refund);
-        }
+        } 
     }
 }
