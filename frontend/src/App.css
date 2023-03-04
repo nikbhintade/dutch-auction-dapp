@@ -1,38 +1,47 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+nav {
+    font-family: "Karla";
+	font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 30px;
+}
+nav > p {
+    font-size: 25px;
+    font-weight: 700;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+button {
+	background-color: #FDA5A4;
+	font-family: "Karla";
+    padding: 10px 30px;
+    border-style: none;
+	font-weight: 700;
+    cursor: pointer;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+    padding: 5% 10%;
+}
+.buy{
+    padding-top: 5%;
+    text-align: left;
 }
 
-.App-link {
-  color: #61dafb;
+#nft {
+    width: 75%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h2 {
+    font-family: "Karla";
+	font-weight: 700;
+    font-size: 25px;
 }

@@ -20,7 +20,7 @@ describe("Dutch Auction", async () => {
             await nft.deployed();
             await nft.awardItem(
                 owner.address,
-                "ipfs://QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/1"
+                "https://gist.githubusercontent.com/nikbhintade/97994377f414de00809dad098ca57bf2/raw/117c9db714b13425116c2496ed0b237e7c88d83b/nft.json"
             );
         } catch (err) {
             console.log(err);

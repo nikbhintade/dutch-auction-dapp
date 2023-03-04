@@ -8,11 +8,12 @@ import "hardhat/console.sol";
 contract DutchAuction is Ownable {
     IERC721 public nft;
 
-    uint256 public initialPrice = 1000 ether;
-    uint256 public discountRate = 2 wei;
+    uint256 public initialPrice = 50 ether;
+    uint256 public discountRate = 20 wei;
     uint256 public duration = 7 days;
     uint256 public startTime;
     uint256 public id;
+    bool public sold;
 
     constructor(
         address _nftAddres,
@@ -46,6 +47,7 @@ contract DutchAuction is Ownable {
         if (refund > 0) {
             console.log(refund);
             payable(msg.sender).transfer(refund);
-        } 
+        }
+        sold = true;
     }
 }
