@@ -17,7 +17,6 @@ function App() {
         sold: false,
     });
     const [price, setPrice] = useState();
-    // const ref = useRef(null);
 
     useEffect(() => {
         const getPrice = async () => {
