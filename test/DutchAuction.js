@@ -45,12 +45,12 @@ describe("Dutch Auction", async () => {
         await nft.approve(dutchauction.address, 0);
         return { dutchauction, nft, owner, buyer };
     };
-    it("should deploy contract along with correct parameters", async () => {
+    it("should deploy contract set using correct parameters", async () => {
         const { dutchauction, nft } = await loadFixture(deployFixture);
         
         expect(await dutchauction.id()).to.be.equal(0);
-        expect(await dutchauction.duration()).to.be.equal(days(7));
-        expect(await dutchauction.discountRate()).to.be.equal(20);
+        expect(await dutchauction.startTime()).to.be.equal((await time.latest()) - 1);
+        expect(await dutchauction.nft()).to.be.equal(nft.address);
         
         expect(await nft.getApproved(0)).to.be.equal(dutchauction.address);
     });

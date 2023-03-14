@@ -20,6 +20,7 @@ function App() {
 
     useEffect(() => {
         const getPrice = async () => {
+            console.log("hit")
             if (state.contract !== undefined) {
                 try {
                     const price = await state.contract.getPrice();
@@ -29,10 +30,13 @@ function App() {
                 }
             }
         };
+        let interval;
+        if(state.contract !== undefined) {
+            interval = setInterval(() => {
+                getPrice();
+            }, 5000);
+        }
 
-        const interval = setInterval(() => {
-            getPrice();
-        }, 5000);
         return () => {
             if (interval) {
                 clearInterval(interval);
@@ -60,13 +64,14 @@ function App() {
                 signer
             );
 
-            const [sold, nftAddress] = await Promise.all([
+            const [sold, nftAddress, id] = await Promise.all([
                 auction.sold(),
                 auction.nft(),
+                auction.id()
             ]);
 
             const nft = new ethers.Contract(nftAddress, NFT.abi, signer);
-            const metadata = await fetch(await nft.tokenURI(0)).then((res) =>
+            const metadata = await fetch(await nft.tokenURI(id)).then((res) =>
                 res.json()
             );
 
@@ -83,8 +88,9 @@ function App() {
 
     const buy = async () => {
         try {
+            const _price = await state.contract.getPrice()
             const buyTxn = await state.contract.buy({
-                value: ethers.utils.parseEther(price),
+                value: ethers.utils.parseEther(_price),
             });
             await toast.promise(buyTxn.wait(), {
                 pending: "transaction executing",

@@ -1,10 +1,10 @@
 # Building a Dutch Auction Dapp on Celo
 
-## Introduction[](https://docs.celo.org/community/celo-sage/tutorial-structure#introduction)
+## Introduction
 
 In this tutorial, we will build a dapp for a Dutch auction using Solidity, Hardhat and React. In a Dutch auction, the price of an item starts high and gradually decreases until someone is willing to purchase it. Unlike a English auction where the price increases with each bid, a Dutch auction can be a more efficient way to sell an item, especially if the seller wants to sell item quickly. We will cover the smart contract logic and user interface for the dapp, and show you how to deploy and interact with the dapp on Celo.
 
-## Prerequisites[](https://docs.celo.org/community/celo-sage/tutorial-structure#prerequisites)
+## Prerequisites
 
 In this tutorial, we will be creating a Dutch auction dapp to sell an NFT. Therefore, we assume that you already have knowledge of how NFTs work. If you are not familiar with NFTs, please complete one of the following tutorials first:
 
@@ -13,7 +13,7 @@ In this tutorial, we will be creating a Dutch auction dapp to sell an NFT. There
 
 It is recommended that you have a basic understanding of Solidity, JavaScript, and React to follow this tutorial. Familiarity with Hardhat is helpful but not necessary, as the tutorial will cover the basics. Having a grasp of these technologies will make it easier to understand and follow along, but even without prior experience, you will still learn a lot from this tutorial.
 
-## Requirements[](https://docs.celo.org/community/celo-sage/tutorial-structure#requirements)
+## Requirements
 
 This tutorial requires Node.js (version >=16.0) to run and test Solidity code. To check if Node.js is installed, run this command in the terminal:
 
